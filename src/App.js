@@ -25,7 +25,7 @@ const App = () => {
         setErrorNotification('Could not connect to server')
         setTimeout(() => {
           setErrorNotification('')
-        }, 4000)
+        }, 5000)
       })
   }, [])
 
@@ -65,16 +65,15 @@ const App = () => {
             setNotification(`Updated ${updatePerson.name}'s number`)
             setTimeout(() => {
               setNotification('')
-            }, 4000)
+            }, 5000)
           }
           )
           .catch(error => {
             console.log(error)
-            setErrorNotification(`Could not update number! ${updatePerson.name} is deleted from the server`)
+            setErrorNotification(`${error.response.data.error}`)
             setTimeout(() => {
               setErrorNotification('')
-              setPersons(persons.filter(person => person.id !== updatePerson.id))
-            }, 4000)
+            }, 5000)
           })
       }
     } else {
@@ -86,14 +85,14 @@ const App = () => {
           setNotification(`Added ${returnedPerson.name}`)
           setTimeout(() => {
             setNotification('')
-          }, 4000)
+          }, 5000)
         })
         .catch(error => {
           console.log(error)
-          setErrorNotification(`Failed to add ${personObject.name}. Could not connect to server`)
+          setErrorNotification(`${error.response.data.error}`)
           setTimeout(() => {
             setErrorNotification('')
-          }, 4000)
+          }, 5000)
         })
     }
   }
